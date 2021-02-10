@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
       start_date: this.startDate.format(DateUtil.DATE_FORMAT),
       end_date: this.endDate.format(DateUtil.DATE_FORMAT)
     })
-      .subscribe((data: Array<any>) => {
+      .subscribe((data: Array<DashboardDataModel>) => {
         this.loading--;
 
         sessionStorage.setItem('dashboardStartDate', this.startDate.toLocaleString());

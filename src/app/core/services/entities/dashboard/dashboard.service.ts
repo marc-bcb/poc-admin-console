@@ -2,8 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../../../environments/environment';
 import {Observable} from 'rxjs';
+import {DashboardDataModel} from '../../../../modules/pages/dashboard/models/dashboard-data.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DashboardService {
 
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -11,8 +14,8 @@ export class DashboardService {
   constructor(private readonly http: HttpClient) {
   }
 
-  getDashboardData(query: {start_date: string, end_date: string}): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/entities/dashboard`, {
+  getDashboardData(query: { start_date: string, end_date: string }): Observable<DashboardDataModel[]> {
+    return this.http.get<DashboardDataModel[]>(`${environment.apiUrl}/entities/dashboard`, {
       params: query,
       headers: this.headers
     });
