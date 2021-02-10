@@ -1,0 +1,33 @@
+<div class="page-wrapper">
+  <div>
+    <bcb-entity-card *ngFor="let entity of corporateEntities" [entity]="entity"></bcb-entity-card>
+  </div>
+
+  <mat-paginator *ngIf="totalItems > itemsPerPage"
+                 [length]="totalItems"
+                 [pageSize]="itemsPerPage"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+
+  <!--Content injected into toolbar-->
+  <ng-container *cdkPortal>
+    <div class="d-flex align-items-center">
+      <div class="pageName me-4">
+        Corporate entities
+      </div>
+      <mat-form-field class="me-2 pb-0" color="primary" appearance="outline">
+        <mat-label>Search</mat-label>
+        <input type="search" matInput (input)="onSearch($event.target.value)">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <div class="options">
+        <button mat-flat-button class="me-2" (click)="onButtonClick('Test')" color="primary">Test</button>
+        <button mat-flat-button class="me-2" (click)="onButtonClick('Something')" color="primary">Something</button>
+        <button mat-flat-button class="me-2" (click)="onButtonClick('Foo')" color="primary">Foo</button>
+        <button mat-flat-button class="me-2" (click)="onButtonClick('Bar')" color="primary">Bar</button>
+        <button mat-flat-button class="me-2" (click)="onButtonClick('Baz')" color="primary">Baz</button>
+      </div>
+    </div>
+  </ng-container>
+</div>

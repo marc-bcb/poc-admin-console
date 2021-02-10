@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:3000/admin',
+  onfidoUrl: 'http://localhost:3000/onfido',
+  authUrl: 'http://localhost:3000/auth',
+  authTokenKey: 'e566f251fae62cccde40e0e58b0edb6ff23fcf23',
+  auth0Domain: 'bcb.eu.auth0.com',
+  auth0ClientId: '5wo4rtxnTvkfUMTe2XoTb1r3UuLDfr84',
+  auth0RedirectUri: `${window.location.origin}/auth/callback`,
+  sentryDSN: ''
 };
 
 /*

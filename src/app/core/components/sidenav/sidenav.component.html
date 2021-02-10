@@ -1,0 +1,100 @@
+<section *ngIf="mobileQuery.matches">
+  <mat-toolbar class="toolbar-content toolbar-content-between">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="menu-user-trigger" [matMenuTriggerFor]="userMenu">Hi, <span
+      class="name">MARC VAN LEEUWEN</span></span>
+  </mat-toolbar>
+  <mat-divider></mat-divider>
+</section>
+<mat-sidenav-container class="sidenav-container" [autosize]="autosize">
+  <mat-sidenav #sidenav
+               [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches"
+               class="sidenav mat-elevation-z0"
+               [fixedInViewport]="true"
+               [class.mini-nav]="(miniNav && !mobileQuery.matches) && !navItemHover">
+    <div class="company-header" [ngClass]="{'d-flex align-items-center justify-content-center': mobileQuery.matches}">
+      <img src="assets/logo.png" alt="bcb group company logo" [class.hidden]="(miniNav && !mobileQuery.matches)">
+      <mat-icon *ngIf="!mobileQuery.matches"
+                [class.flip]="!miniNav || (miniNav && navItemHover)"
+                class="nav-size-toggle"
+                (click)="navExpanseClick()">
+        double_arrow
+      </mat-icon>
+    </div>
+    <mat-nav-list class="nav-list" (mouseenter)="navItemHover = true" (mouseleave)="navItemHover = false" dense>
+      <ng-container *ngFor="let group of config.navItemsGroups">
+        <ng-container *ngIf="group.title">
+          <div *ngIf="!miniNav || navItemHover" mat-subheader>Administration</div>
+          <mat-divider *ngIf="miniNav && !navItemHover"></mat-divider>
+        </ng-container>
+        <ng-container *ngFor="let navItem of group.navItems">
+          <a *ngIf="navItem.children?.length < 1 || (miniNav && !navItemHover)"
+             mat-list-item
+             [routerLink]="navItem.location || '#'"
+             routerLinkActive="active-nav-item">
+            <mat-icon *ngIf="navItem.icon" mat-list-icon>{{navItem.icon}}</mat-icon>
+            <div mat-line>{{navItem.title}}</div>
+          </a>
+          <mat-expansion-panel *ngIf="(!miniNav || navItemHover) && navItem?.children?.length > 0"
+                               class="mat-elevation-z0 list-item-expansion"
+                               dense>
+            <mat-expansion-panel-header>
+              <mat-panel-description>
+                <mat-list-item>
+                  <mat-icon *ngIf="navItem.icon" mat-list-icon>{{navItem.icon}}</mat-icon>
+                  <div mat-line>{{navItem.title}}</div>
+                </mat-list-item>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-nav-list>
+              <a *ngFor="let child of navItem.children"
+                 mat-list-item
+                 [routerLink]="child.location || '#'"
+                 routerLinkActive="active-nav-item">
+                <mat-icon mat-list-icon *ngIf="child.icon">{{child.icon}}</mat-icon>
+                <div mat-line>{{child.title}}</div>
+              </a>
+            </mat-nav-list>
+          </mat-expansion-panel>
+        </ng-container>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+    <section *ngIf="!mobileQuery.matches">
+      <mat-toolbar class="toolbar-content toolbar-content-end">
+        <!--get details from auth token-->
+        <span class="menu-user-trigger" [matMenuTriggerFor]="userMenu">Hi, <span
+          class="name">MARC VAN LEEUWEN</span></span>
+        <!--End get details from auth token-->
+      </mat-toolbar>
+      <mat-divider></mat-divider>
+    </section>
+    <mat-toolbar class="toolbar-content row">
+      <!--inject content from a service-->
+      <div class="col">
+        <ng-template [cdkPortalOutlet]="toolbarPortal$ | async"></ng-template>
+      </div>
+      <!--end inject content from a service-->
+      <div class="col d-flex justify-content-end">
+        <button mat-flat-button class="me-2" color="primary">Add individual</button>
+        <button mat-flat-button color="primary">Add corporate</button>
+      </div>
+    </mat-toolbar>
+    <div style="height: 100%; overflow: auto">
+      <ng-content></ng-content>
+      <mat-toolbar class="toolbar-content">
+        <div class="d-flex justify-content-end" style="width: 100%">
+          2021 ©&nbsp;<a href="https://bcbgroup.io" target="_blank">BCB Group</a>
+        </div>
+      </mat-toolbar>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="logout.emit()">Log out</button>
+</mat-menu>

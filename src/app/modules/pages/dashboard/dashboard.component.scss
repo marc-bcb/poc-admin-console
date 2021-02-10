@@ -1,0 +1,102 @@
+:host {
+  --chart-color-invited: #609acd;
+  --chart-color-started: #c16161;
+  --chart-color-completed: #70d97f;
+  --chart-color-incomplete: #C192D9;
+  --chart-color-approved: #D9D652;
+  --chart-color-rejected: #D98F35;
+}
+
+
+.item {
+
+  &:not(:last-of-type) {
+    border-right: 1px solid var(--divider-color);
+  }
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .status {
+    font-size: 1rem;
+  }
+
+  .count {
+    font-size: 1rem;
+  }
+
+  .progress {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    height: 0.4rem;
+
+    .handle {
+      height: 100%;
+    }
+
+    width: 100%;
+    background-color: var(--body-background-color);
+  }
+
+  .percentage {
+    display: flex;
+    justify-content: flex-end;
+    font-size: .75rem;
+    color: var(--toolbar-text-grey-dark)
+  }
+}
+
+.bg {
+  &-invited {
+    background-color: var(--chart-color-invited) !important;
+  }
+
+  &-started {
+    background-color: var(--chart-color-started) !important;
+  }
+
+  &-completed {
+    background-color: var(--chart-color-completed) !important;
+  }
+
+  &-incomplete {
+    background-color: var(--chart-color-incomplete) !important;
+  }
+
+  &-approved {
+    background-color: var(--chart-color-approved) !important;
+  }
+
+  &-rejected {
+    background-color: var(--chart-color-rejected) !important;
+  }
+}
+
+.text {
+  &-invited {
+    color: var(--chart-color-invited) !important;
+  }
+
+  &-started {
+    color: var(--chart-color-started) !important;
+  }
+
+  &-completed {
+    color: var(--chart-color-completed) !important;
+  }
+
+  &-incomplete {
+    color: var(--chart-color-incomplete) !important;
+  }
+
+  &-approved {
+    color: var(--chart-color-approved) !important;
+  }
+
+  &-rejected {
+    color: var(--chart-color-rejected) !important;
+  }
+}

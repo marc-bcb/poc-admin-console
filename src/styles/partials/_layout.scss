@@ -1,0 +1,23 @@
+.page-wrapper {
+  // Ensure that the page takes up the entire space available
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  // Account for the height of the bottom toolbar
+  min-height: calc(100% - 64px);
+}
+
+.full-page {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}

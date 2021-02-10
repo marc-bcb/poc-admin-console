@@ -1,0 +1,36 @@
+<mat-card class="row m-3 mat-elevation-z0">
+  <div class="col">
+    <div class="row">
+      <h3 class="col">{{entity.name}} - {{entity.cNumber}}</h3>
+      <div class="col d-flex justify-content-end">
+        <button mat-flat-button color="primary">View profile</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="details d-flex">
+          <div *ngFor="let detail of entity.details" class="item me-3">
+            <mat-icon class="me-1">{{detail.type}}</mat-icon>
+            <span>{{detail.value}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-1" *ngIf="entity.flags?.length > 0">
+      <div class="col">
+        <div class="flags d-flex">
+          <div class="badge-group">
+            <div *ngFor="let flag of entity.flags"
+                 class="badge me-2 px-2"
+                 [class.bg-success]="flag.status === 'success'"
+                 [class.bg-warn]="flag.status === 'warn' || flag.status === 'in-progress'"
+                 [class.bg-danger]="flag.status === 'danger'"
+                 [class.bg-black]="flag.status === 'unknown'">
+              {{flag.value}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,184 @@
+<div class="page-wrapper">
+  <div>
+    <bcb-loader *ngIf="loading > 0" class="full-page" [config]="{type: 'spinner'}"></bcb-loader>
+    <mat-card class="m-3 mat-elevation-z0">
+      <form>
+        <mat-form-field class="me-3">
+          <mat-label>Starting from</mat-label>
+          <input matInput
+                 [matDatepicker]="picker"
+                 [(ngModel)]="startDate"
+                 name="startDate"
+                 (dateChange)="loadDashboardData()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Until</mat-label>
+          <input matInput
+                 [matDatepicker]="picker2"
+                 [(ngModel)]="endDate"
+                 name="endDate"
+                 (dateChange)="loadDashboardData()">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </mat-card>
+
+    <mat-card class="row m-3 mat-elevation-z0">
+      <div class="row">
+        <div class="col-md-12 col-lg-4 col-xl item p-2">
+      <span>
+      <div class="status">Invited</div>
+      <div class="count text-invited">{{chartData?.total}}</div>
+      </span>
+          <div class="progress">
+            <div class="handle bg-invited" id="breakdown_invited"
+                 [style.width.%]="100"></div>
+          </div>
+          <div class="percentage">{{(100 * chartData?.total) / chartData?.total}}%</div>
+        </div>
+        <div class="col-md-12 col-lg-4 col-xl item p-2">
+      <span>
+      <div class="status">Started</div>
+      <div class="count text-started">{{chartData?.started}}</div>
+      </span>
+          <div class="progress">
+            <div class="handle bg-started" id="breakdown_started"
+                 [style.width.%]="(chartData?.started * chartData?.total) / chartData?.total"></div>
+          </div>
+          <div class="percentage">{{(chartData?.started * chartData?.total) / chartData?.total}}%</div>
+        </div>
+        <div class="col-md-12 col-lg-4 col-xl item p-2">
+      <span>
+      <div class="status">Completed</div>
+      <div class="count text-completed">{{chartData?.completed}}</div>
+      </span>
+          <div class="progress">
+            <div class="handle bg-completed" id="breakdown_completed"
+                 [style.width.%]="(chartData?.completed * chartData?.total) / chartData?.total"></div>
+          </div>
+          <div class="percentage">{{(chartData?.completed * chartData?.total) / chartData?.total}}%</div>
+        </div>
+        <div class="col-md-12 col-lg-4 col-xl item p-2">
+      <span>
+      <div class="status">Not Complete</div>
+      <div class="count text-incomplete">{{chartData?.notCompleted}}</div>
+      </span>
+          <div class="progress">
+            <div class="handle bg-incomplete" id="breakdown_incompleted"
+                 [style.width.%]="(chartData?.notCompleted * chartData?.total) / chartData?.total"></div>
+          </div>
+          <div class="percentage">{{(chartData?.notCompleted * chartData?.total) / chartData?.total}}%</div>
+        </div>
+        <div class="col-md-12 col-lg-4 col-xl item p-2">
+      <span>
+      <div class="status">Approved</div>
+      <div class="count text-approved">{{chartData?.approved}}</div>
+      </span>
+          <div class="progress">
+            <div class="handle bg-approved" id="breakdown_approved"
+                 [style.width.%]="(chartData?.approved * chartData?.total) / chartData?.total"></div>
+          </div>
+          <div class="percentage">{{(chartData?.approved * chartData?.total) / chartData?.total}}%</div>
+        </div>
+        <div class="col-md-12 col-lg-4 col-xl item p-2">
+      <span>
+      <div class="status">Rejected</div>
+      <div class="count text-rejected">{{chartData?.rejected}}</div>
+      </span>
+          <div class="progress">
+            <div class="handle bg-rejected" id="breakdown_rejected"
+                 [style.width.%]="(chartData?.rejected * chartData?.total) / chartData?.total"></div>
+          </div>
+          <div class="percentage">{{(chartData?.rejected * chartData?.total) / chartData?.total}}%</div>
+        </div>
+      </div>
+    </mat-card>
+
+    <div class="m-3">
+      <div class="row">
+        <div class="col-12 col-xl-6">
+          <mat-card class="mat-elevation-z0">
+            <canvas id="lineChart" height="400"></canvas>
+          </mat-card>
+        </div>
+        <div class="col-12 col-xl-6">
+          <mat-card class="mat-elevation-z0">
+            <canvas id="barChart" height="400"></canvas>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-3">
+      <mat-card class="mat-elevation-z0">
+        <div class="row">
+          <div class="col">
+            <table mat-table style="width: 100%" [dataSource]="dataSource">
+
+              <ng-container matColumnDef="entity">
+                <th mat-header-cell *matHeaderCellDef> Entity</th>
+                <td mat-cell
+                    *matCellDef="let entity">{{entity.entity_type === 'corporate' ? entity.entity_entity_name : entity.entity_first_name + ' ' + entity.entity_last_name}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="contact">
+                <th mat-header-cell *matHeaderCellDef> Contact</th>
+                <td mat-cell *matCellDef="let entity">
+                  {{ entity.entity_first_name + ' ' + entity.entity_last_name}}<br/>
+                  <a href="mailto:{{entity.entity_email}}">{{entity.entity_email}}</a><br/>
+                  {{entity.entity_mobile}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="invited">
+                <th mat-header-cell *matHeaderCellDef> Invited</th>
+                <td mat-cell *matCellDef="let entity"> {{entity.entity_created_at | date:'d MMM, y'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="started">
+                <th mat-header-cell *matHeaderCellDef> Started</th>
+                <td mat-cell *matCellDef="let entity"> {{entity.entity_started | date:'d MMM, y'}} </td>
+              </ng-container>
+              <ng-container matColumnDef="complete">
+                <th mat-header-cell *matHeaderCellDef> Completed</th>
+                <td mat-cell *matCellDef="let entity"> {{entity.entity_completed | date:'d MMM, y'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status</th>
+                <td mat-cell *matCellDef="let entity">{{ getEntityStatus(entity) }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Actions</th>
+                <td mat-cell *matCellDef="let entity">
+                  <button routerLink="/entities/{{entity.entity_type}}/{{entity.entity_id}}/profile" mat-flat-button
+                          color="primary">View
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<ng-container *cdkPortal>
+  <div class="pageName me-4">
+    Dashboard
+  </div>
+</ng-container>

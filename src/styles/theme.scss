@@ -1,0 +1,84 @@
+@import "~@angular/material/theming";
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Poppins, Roboto, monospace'
+);
+
+@include mat-core($custom-typography);
+
+// define a real custom palette (using http://mcg.mbitson.com)
+$bcb-brand: (
+  50 : #ecefff,
+  100 : #ced7ff,
+  200 : #aebcff,
+  300 : #8ea1ff,
+  400 : #758cff,
+  500 : #5d78ff,
+  600 : #5570ff,
+  700 : #4b65ff,
+  800 : #415bff,
+  900 : #3048ff,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #dbdfff,
+  A700 : #c2c8ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$bcb-alternative: (
+  50 : #e0e2e4,
+  100 : #b3b6bd,
+  200 : #808691,
+  300 : #4d5664,
+  400 : #263143,
+  500 : #000d22,
+  600 : #000b1e,
+  700 : #000919,
+  800 : #000714,
+  900 : #00030c,
+  A100 : #5050ff,
+  A200 : #1d1dff,
+  A400 : #0000e9,
+  A700 : #0000cf,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+// mandatory stuff for theming
+$bcb-palette-primary: mat-palette($bcb-brand);
+$bcb-palette-accent: mat-palette($bcb-alternative);
+
+// include the custom theme components into a theme object
+$bcb-theme: mat-light-theme($bcb-palette-primary, $bcb-palette-accent);
+
+// include the custom theme object into the angular material theme
+@include angular-material-theme($bcb-theme);

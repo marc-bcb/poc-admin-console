@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+/*Material Overrides*/
+@import "styles/overrides/material/form-field/mat-form-field";
+@import "styles/overrides/material/sidenav/mat-drawer";
+
+@import "styles/theme";
+@import '~typeface-roboto/index.css';
+@import '~typeface-poppins/index.css';
+
+@import "styles/partials/colors";
+@import "styles/partials/layout";
+
+html, body {
+  height: 100%;
+  background-color: var(--body-background-color);
+  font-family: Poppins, Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 13px;
+}
+
+body {
+  margin: 0;
+}

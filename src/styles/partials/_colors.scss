@@ -1,0 +1,45 @@
+:root {
+  --link-highlight-color: #F6F7FD;
+  --link-active-highlight-color: #F6F7FD;
+  --link-icon-color: #c4cff9;
+  --link-active-icon-color: #5d78ff;
+  --link-text-color: #313752;
+  --link-active-text-color: #5d78ff;
+
+  --toolbar-text-grey-light: #959cb6;
+  --toolbar-text-grey-dark: #6c7293;
+
+  --body-background-color: #f2f3f8;
+
+  --divider-color: var(--body-background-color);
+
+  --color-success: #0abb87;
+  --color-success-contrast: #fff;
+  --color-warn: #ffb822;
+  --color-warn-contrast: #000;
+  --color-danger: #fd397a;
+  --color-danger-contrast: #fff;
+}
+
+
+.bg {
+  &-success {
+    background-color: var(--color-success) !important;
+    color: var(--color-success-contrast);
+  }
+
+  &-warn {
+    background-color: var(--color-warn) !important;
+    color: var(--color-warn-contrast);
+  }
+
+  &-danger {
+    background-color: var(--color-danger) !important;
+    color: var(--color-danger-contrast);
+  }
+
+  &-black {
+    background-color: #000 !important;
+    color: #fff;
+  }
+}

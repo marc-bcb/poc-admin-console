@@ -1,0 +1,12 @@
+<ng-container *ngIf="config?.type === 'spinner'; else bar">
+  <mat-progress-spinner [mode]="config?.mode || 'indeterminate'"
+                        [value]="config?.progress"
+                        [color]="config?.color || 'primary'"
+                        [ngClass]="config?.classes"></mat-progress-spinner>
+</ng-container>
+<ng-template #bar>
+  <mat-progress-bar [mode]="config?.mode || 'indeterminate'"
+                    [value]="config?.progress"
+                    [color]="config?.color || 'primary'"
+                    [ngClass]="config?.classes"></mat-progress-bar>
+</ng-template>
