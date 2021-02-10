@@ -27,7 +27,7 @@ export class AuthService {
             this.getAuth0User()
               .pipe(
                 first((data: any) => !!data),
-                tap((user: any) => {
+                tap(() => {
                   // get system user
                   this.getSystemUser()
                     .pipe(
@@ -58,10 +58,10 @@ export class AuthService {
 
   // BCB-services calls
   getSystemUser(): Observable<SystemUserModel> {
-    const lsValue: string = window.localStorage.getItem('consoleSystemUser');
+    const lsValue: string = localStorage.getItem('consoleSystemUser');
     const storedUser: SystemUserModel = JSON.parse(lsValue);
 
-    if (!!storedUser) {
+    if (storedUser) {
       return of(storedUser);
     }
 
@@ -83,6 +83,5 @@ export class AuthService {
   removeUserToken(): void {
     sessionStorage.removeItem('userToken');
     localStorage.removeItem('consoleSystemUser');
-    localStorage.removeItem('consoleLoggedInUser');
   }
 }
