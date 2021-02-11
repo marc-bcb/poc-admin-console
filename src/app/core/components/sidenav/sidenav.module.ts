@@ -19,17 +19,19 @@ import {PortalModule} from '@angular/cdk/portal';
     SidenavComponent
   ],
   imports: [
+    // Angular
     CommonModule,
+    PortalModule,
+    RouterModule,
+    // Material
     MatButtonModule,
-    MatToolbarModule,
     MatDividerModule,
-    MatSidenavModule,
+    MatExpansionModule,
     MatIconModule,
     MatListModule,
-    RouterModule,
-    MatExpansionModule,
     MatMenuModule,
-    PortalModule
+    MatSidenavModule,
+    MatToolbarModule
   ]
 })
 export class SidenavModule {
