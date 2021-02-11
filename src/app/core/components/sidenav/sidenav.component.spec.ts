@@ -57,6 +57,34 @@ describe('SidenavComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('navExpanseClick', () => {
+    it('should toggle miniNav', () => {
+      // prep
+      component.miniNav = false;
+
+      // execute
+      component.navExpanseClick();
+
+      // assert
+      expect(component.miniNav).toBe(true);
+    });
+
+    it('should toggle autoSize', () => {
+      // prep
+      jest.useFakeTimers();
+
+      // execute
+      component.navExpanseClick();
+
+      // assert
+      expect(component.autosize).toBe(true);
+      expect(setTimeout).toHaveBeenCalledTimes(1);
+
+      jest.advanceTimersByTime(1);
+      expect(component.autosize).toBe(false);
+    });
+  });
 });
 
 class TestMockData {
