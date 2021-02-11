@@ -2,7 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {DashboardService} from './dashboard.service';
 import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {of} from 'rxjs';
 import DoneCallback = jest.DoneCallback;
 

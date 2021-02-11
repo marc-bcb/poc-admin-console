@@ -7,7 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {ENTITY_TABLE_DISPLAY_COLUMNS} from './dashboard.const';
 import {ToolbarPortalService} from '../../../core/services/portal/toolbar-portal.service';
 import {CdkPortal} from '@angular/cdk/portal';
-import {DashboardService} from '../../../core/services/entities/dashboard/dashboard.service';
+import {DashboardService} from '../../../core/services/dashboard/dashboard.service';
 import {Subscription} from 'rxjs';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
@@ -119,6 +119,70 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     return 'Invited';
   }
 
+  private initCanvasSize(canvas: HTMLCanvasElement): void {
+    // Make it visually fill the positioned parent
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    // ...then set the internal size to match
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+
+  private formatChartData(dashboardData: Array<DashboardDataModel>): ChartDataModel {
+
+    if (!dashboardData) {
+      return undefined;
+    }
+
+    const approved = dashboardData.filter(data => data.entity_approved).length;
+    const completed = dashboardData.filter(data => data.entity_completed).length;
+    const rejected = dashboardData.filter(data => data.entity_status === 'rejected').length;
+    const started = dashboardData.filter(data => data.entity_started).length;
+    const total = dashboardData.length;
+    const notCompleted = started - completed;
+
+    const formattedData: ChartDataModel = {
+      approved,
+      completed,
+      notCompleted,
+      rejected,
+      started,
+      total, // invited
+      data: {
+        invited: [],
+        completed: [],
+        started: [],
+      }
+    };
+
+    for (const date of DateUtil._getRangeOfDates(this.startDate, this.endDate)) {
+      // formattedData
+      let _invited = 0;
+      let _completed = 0;
+      let _started = 0;
+
+      dashboardData.filter(
+        (data) => {
+          if (moment(data.entity_created_at).isSame(date, 'date')) {
+            _invited++;
+          }
+          if (moment(data.entity_completed).isSame(date, 'date')) {
+            _completed++;
+          }
+          if (moment(data.entity_started).isSame(date, 'date')) {
+            _started++;
+          }
+        }
+      );
+
+      formattedData.data.invited.push(_invited);
+      formattedData.data.completed.push(_completed);
+      formattedData.data.started.push(_started);
+    }
+
+    return formattedData;
+  }
+
   private createLineChart(): void {
     this.lineChart?.destroy();
     this.lineChart = new Chart(this.lineChartCtx, {
@@ -218,66 +282,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       }
     });
-  }
-
-  private initCanvasSize(canvas: HTMLCanvasElement): void {
-    // Make it visually fill the positioned parent
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    // ...then set the internal size to match
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-
-  private formatChartData(dashboardData: Array<DashboardDataModel>): ChartDataModel {
-
-    const approved = dashboardData.filter(data => data.entity_approved).length;
-    const completed = dashboardData.filter(data => data.entity_completed).length;
-    const rejected = dashboardData.filter(data => data.entity_status === 'rejected').length;
-    const started = dashboardData.filter(data => data.entity_started).length;
-    const total = dashboardData.length;
-    const notCompleted = started - completed;
-
-    const formattedData = {
-      approved,
-      completed,
-      notCompleted,
-      rejected,
-      started,
-      total, // invited
-      data: {
-        invited: [],
-        completed: [],
-        started: [],
-      }
-    };
-
-    for (const date of DateUtil._getRangeOfDates(this.startDate, this.endDate)) {
-      // formattedData
-      let _invited = 0;
-      let _completed = 0;
-      let _started = 0;
-
-      dashboardData.filter(
-        (data) => {
-          if (moment(data.entity_created_at).isSame(date, 'date')) {
-            _invited++;
-          }
-          if (moment(data.entity_completed).isSame(date, 'date')) {
-            _completed++;
-          }
-          if (moment(data.entity_started).isSame(date, 'date')) {
-            _started++;
-          }
-        }
-      );
-
-      formattedData.data.invited.push(_invited);
-      formattedData.data.completed.push(_completed);
-      formattedData.data.started.push(_started);
-    }
-
-    return formattedData;
   }
 
 }
