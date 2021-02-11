@@ -7,10 +7,5 @@ import {EntityCardModel} from './models/entity-card.model';
   styleUrls: ['./entity-card.component.scss']
 })
 export class EntityCardComponent {
-
   @Input() entity: EntityCardModel;
-
-  constructor() {
-  }
-
 }
