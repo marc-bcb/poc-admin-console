@@ -90,7 +90,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
         this.chartData = this.formatChartData(data);
 
         this.dataSource.data = data;
-        this.dataSource.paginator = this.paginator;
 
         this.createLineChart();
         this.createBarChart();

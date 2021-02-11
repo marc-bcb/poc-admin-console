@@ -9,6 +9,6 @@ export interface DashboardDataModel {
   entity_entity_name: string;
   entity_approved: boolean;
   entity_created_at: Date;
-  entity_started: Date;
-  entity_completed: Date;
+  entity_started?: Date;
+  entity_completed?: Date;
 }
