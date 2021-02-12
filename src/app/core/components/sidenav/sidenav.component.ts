@@ -1,8 +1,7 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {SideNavModel} from './models/side-nav.model';
-import {PortalTypes, ToolbarPortalService} from '../../services/portal/toolbar-portal.service';
-import {Observable} from 'rxjs';
+import {PortalOperation, PortalTypes, ToolbarPortalService, ToolbarPortalSubject} from '../../services/portal/toolbar-portal.service';
 
 @Component({
   selector: 'bcb-sidenav',
@@ -13,7 +12,8 @@ export class SidenavComponent implements OnInit {
   @Input() config: SideNavModel;
   @Output() logout: EventEmitter<void> = new EventEmitter<void>();
 
-  toolbarPortal$: Observable<PortalTypes>;
+  toolbarPortal: PortalTypes;
+  toolbarPortalOperation: PortalOperation = 'append';
 
   mobileQuery: MediaQueryList;
 
@@ -32,7 +32,10 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.toolbarPortal$ = this.toolbarPortalService.toolbarPortal$;
+    this.toolbarPortalService.toolbarPortal$.subscribe((res: ToolbarPortalSubject) => {
+      this.toolbarPortal = res.portal;
+      this.toolbarPortalOperation = res.operation;
+    });
   }
 
   navExpanseClick(): void {

@@ -90,26 +90,6 @@ mat-expansion-panel {
   height: 100vh;
 }
 
-.toolbar-content {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  font-size: 12px;
-  color: var(--toolbar-text-grey-light);
-
-  &-between {
-    justify-content: space-between;
-  }
-
-  &-end {
-    justify-content: flex-end;
-  }
-
-  .name {
-    color: var(--toolbar-text-grey-dark);
-  }
-}
-
 .space-between {
   display: flex;
   justify-content: space-between;

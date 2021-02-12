@@ -73,8 +73,16 @@
                  [showFirstLastButtons]="true"
                  [length]="systemUsers?.length"></mat-paginator>
 </div>
+<!--<ng-container *cdkPortal>-->
+<!--  <div class="pageName me-4">test</div>-->
+<!--</ng-container>-->
 <ng-container *cdkPortal>
-  <div class="pageName me-4">
-    System users
+  <div class="col">
+    <div class="pageName me-4">
+      System users
+    </div>
+  </div>
+  <div class="col d-flex justify-content-end">
+    <button mat-button color="primary">Add system user</button>
   </div>
 </ng-container>

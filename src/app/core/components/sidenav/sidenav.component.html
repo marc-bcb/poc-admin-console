@@ -1,5 +1,5 @@
 <section *ngIf="mobileQuery.matches">
-  <mat-toolbar class="toolbar-content toolbar-content-between">
+  <mat-toolbar class="toolbar-content justify-content-between">
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
@@ -15,7 +15,8 @@
                [fixedInViewport]="true"
                [class.mini-nav]="(miniNav && !mobileQuery.matches) && !navItemHover">
     <div class="company-header" [ngClass]="{'d-flex align-items-center justify-content-center': mobileQuery.matches}">
-      <img src="assets/logo.png" class="company-image" alt="bcb group company logo" [class.hidden]="(miniNav && !mobileQuery.matches)">
+      <img src="assets/logo.png" class="company-image" alt="bcb group company logo"
+           [class.hidden]="(miniNav && !mobileQuery.matches)">
       <mat-icon *ngIf="!mobileQuery.matches"
                 [class.flip]="!miniNav || (miniNav && navItemHover)"
                 class="nav-size-toggle"
@@ -65,7 +66,7 @@
 
   <mat-sidenav-content class="sidenav-content">
     <section *ngIf="!mobileQuery.matches">
-      <mat-toolbar class="toolbar-content toolbar-content-end">
+      <mat-toolbar class="toolbar-content justify-content-end">
         <!--get details from auth token-->
         <span class="menu-user-trigger" [matMenuTriggerFor]="userMenu">Hi, <span
           class="name">MARC VAN LEEUWEN</span></span>
@@ -74,15 +75,20 @@
       <mat-divider></mat-divider>
     </section>
     <mat-toolbar class="toolbar-content">
-      <!--inject content from a service-->
-      <div class="col">
-        <ng-template [cdkPortalOutlet]="toolbarPortal$ | async"></ng-template>
-      </div>
-      <!--end inject content from a service-->
-      <div class="col d-flex justify-content-end">
-        <button mat-flat-button class="me-2" color="primary">Add individual</button>
-        <button mat-flat-button color="primary">Add corporate</button>
-      </div>
+      <ng-container *ngIf="toolbarPortalOperation === 'append'; else portalContent">
+        <!--inject content from a service-->
+        <div class="col">
+          <ng-template [cdkPortalOutlet]="toolbarPortal"></ng-template>
+        </div>
+        <!--end inject content from a service-->
+        <div class="col d-flex justify-content-end">
+          <button mat-flat-button class="me-2" color="primary">Add individual</button>
+          <button mat-flat-button color="primary">Add corporate</button>
+        </div>
+      </ng-container>
+      <ng-template #portalContent>
+        <ng-template [cdkPortalOutlet]="toolbarPortal"></ng-template>
+      </ng-template>
     </mat-toolbar>
     <div style="height: 100%; overflow: auto">
       <ng-content></ng-content>

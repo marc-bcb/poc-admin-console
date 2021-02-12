@@ -1,0 +1,11 @@
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  font-size: 12px;
+  color: var(--toolbar-text-grey-light);
+
+  .name {
+    color: var(--toolbar-text-grey-dark);
+  }
+}

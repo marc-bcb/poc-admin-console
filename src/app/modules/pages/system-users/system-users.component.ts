@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CdkPortal} from '@angular/cdk/portal';
-import {ToolbarPortalService} from '../../../core/services/portal/toolbar-portal.service';
+import {ToolbarPortalService, ToolbarPortalSubject} from '../../../core/services/portal/toolbar-portal.service';
 import {SystemUserModel} from '../../../core/models/system-user.model';
 import {SystemUsersService} from '../../../core/services/system/users/system-users.service';
 import {Subscription} from 'rxjs';
-import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -29,7 +29,7 @@ export class SystemUsersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.toolbarPortalService.setPortal(this.portalContent);
+    this.toolbarPortalService.setPortal(this.portalContent, 'replace');
   }
 
   ngAfterViewInit(): void {
@@ -63,10 +63,6 @@ export class SystemUsersComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  onPageChange(event: PageEvent): void {
-    this.dataSource.data.slice(event.pageIndex * event.pageSize, (event.pageIndex * event.pageSize) + event.pageSize);
   }
 
 }
