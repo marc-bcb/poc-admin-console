@@ -1,0 +1,22 @@
+.page-wrapper {
+  justify-content: space-between;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-end {
+  text-align: end;
+}
+
+tr {
+  &.mat-row {
+    &:nth-last-of-type(even) {
+      background: #fcfcfc;
+    }
+    &:hover {
+      background: #f9f9f9;
+    }
+  }
+}

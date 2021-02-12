@@ -16,6 +16,8 @@ import {LoaderModule} from './core/components/loader/loader.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthService} from './core/services/auth/auth.service';
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
+import {SystemUsersModule} from './modules/pages/system-users/system-users.module';
+import {PartnersModule} from './modules/pages/partners/partners.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
     DashboardModule,
     OnboardingModule,
     CorporateEntitiesModule,
-    IndividualEntitiesModule
+    IndividualEntitiesModule,
+    PartnersModule,
+    SystemUsersModule
   ],
   providers: [
     FormBuilder,

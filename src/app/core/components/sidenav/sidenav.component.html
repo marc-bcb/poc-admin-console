@@ -15,7 +15,7 @@
                [fixedInViewport]="true"
                [class.mini-nav]="(miniNav && !mobileQuery.matches) && !navItemHover">
     <div class="company-header" [ngClass]="{'d-flex align-items-center justify-content-center': mobileQuery.matches}">
-      <img src="assets/logo.png" alt="bcb group company logo" [class.hidden]="(miniNav && !mobileQuery.matches)">
+      <img src="assets/logo.png" class="company-image" alt="bcb group company logo" [class.hidden]="(miniNav && !mobileQuery.matches)">
       <mat-icon *ngIf="!mobileQuery.matches"
                 [class.flip]="!miniNav || (miniNav && navItemHover)"
                 class="nav-size-toggle"
@@ -73,7 +73,7 @@
       </mat-toolbar>
       <mat-divider></mat-divider>
     </section>
-    <mat-toolbar class="toolbar-content row">
+    <mat-toolbar class="toolbar-content">
       <!--inject content from a service-->
       <div class="col">
         <ng-template [cdkPortalOutlet]="toolbarPortal$ | async"></ng-template>

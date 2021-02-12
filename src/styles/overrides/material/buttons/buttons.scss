@@ -1,0 +1,30 @@
+.mat-button, .mat-stroked-button, .mat-icon-button {
+  &.mat-danger {
+    color: var(--color-danger);
+  }
+
+  &.mat-success {
+    color: var(--color-success);
+  }
+
+  &.mat-warning {
+    color: var(--color-warn);
+  }
+}
+
+.mat-raised-button, .mat-flat-button {
+  &.mat-danger {
+    background-color: var(--color-danger);
+    color: var(--color-danger-contrast);
+  }
+
+  &.mat-success {
+    background-color: var(--color-success);
+    color: var(--color-success-contrast);
+  }
+
+  &.mat-warning {
+    background-color: var(--color-warn);
+    color: var(--color-warn-contrast);
+  }
+}

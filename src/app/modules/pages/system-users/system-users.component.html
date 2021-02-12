@@ -1,5 +1,77 @@
 <div class="page-wrapper">
-  <p>system-users works!</p>
+  <div>
+    <bcb-loader *ngIf="loading" class="full-page" [config]="{type: 'spinner'}"></bcb-loader>
+    <mat-form-field appearance="outline" color="primary" class="pb-0 mx-3 mt-3">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #searchInput>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <div class="mat-elevation-z0 m-3">
+      <table mat-table
+             class="w-100"
+             [dataSource]="dataSource"
+             matSort
+             matSortActive="id"
+             matSortDirection="asc">
+        <ng-container matColumnDef="first_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> First name</th>
+          <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+        </ng-container>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="last_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last name</th>
+          <td mat-cell *matCellDef="let row"> {{row.last_name}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email</th>
+          <td mat-cell *matCellDef="let row"><a href="mailto: {{row.email}}">{{row.email}}</a></td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+          <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="text-end"> Actions</th>
+          <td mat-cell *matCellDef="let row" class="text-end">
+            <button mat-icon-button
+                    color="primary"
+                    matTooltip="Edit user">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Delete user" color="danger">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <!-- custom colors are set up in overrides/material/buttons/buttons.scss -->
+            <button mat-stroked-button
+                    *ngIf="row.status !== 'pending'"
+                    [color]="row.status === 'active' ? 'danger' : 'success'">
+              {{ row.status === 'active' ? 'Suspend' : 'Activate' }}
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No results found "{{searchInput.value}}"</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <mat-paginator [pageSize]="10"
+                 [pageSizeOptions]="[3, 5, 10]"
+                 [showFirstLastButtons]="true"
+                 [length]="systemUsers?.length"></mat-paginator>
 </div>
 <ng-container *cdkPortal>
   <div class="pageName me-4">

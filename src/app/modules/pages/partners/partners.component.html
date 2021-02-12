@@ -1,5 +1,9 @@
 <div class="page-wrapper">
-  <p>partners works!</p>
+  <div *ngFor="let partner of partners">
+    <pre>
+      {{partner | json}}
+    </pre>
+  </div>
 </div>
 <ng-container *cdkPortal>
   <div class="pageName me-4">
