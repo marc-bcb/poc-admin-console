@@ -21,7 +21,7 @@
         <div class="flags d-flex">
           <div class="badge-group">
             <div *ngFor="let flag of entity.flags"
-                 class="badge me-2 px-2"
+                 class="badge badge-fw-thin me-2 px-2"
                  [class.bg-success]="flag.status === 'success'"
                  [class.bg-warn]="flag.status === 'warn' || flag.status === 'in-progress'"
                  [class.bg-danger]="flag.status === 'danger'"

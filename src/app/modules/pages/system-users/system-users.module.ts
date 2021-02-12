@@ -11,7 +11,6 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -26,8 +25,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSortModule,
     MatInputModule,
     MatPaginatorModule,
-    MatTooltipModule,
-    MatToolbarModule
+    MatTooltipModule
   ],
   providers: [
     SystemUsersService
