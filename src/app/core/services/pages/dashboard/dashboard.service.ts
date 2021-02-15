@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../../../environments/environment';
 import {Observable} from 'rxjs';
-import {DashboardDataModel} from '../../../modules/pages/dashboard/models/dashboard-data.model';
+import {DashboardDataModel} from '../../../../modules/pages/dashboard/models/dashboard-data.model';
 
 @Injectable({
   providedIn: 'root'

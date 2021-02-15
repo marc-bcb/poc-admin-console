@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CdkPortal} from '@angular/cdk/portal';
 import {ToolbarPortalService} from '../../../core/services/portal/toolbar-portal.service';
-import {PartnerService} from '../../../core/services/partners/partner.service';
+import {PartnerService} from '../../../core/services/pages/partners/partner.service';
 import {PartnerModel} from '../../../core/models/Partners/partner.model';
 import {Subscription} from 'rxjs';
 

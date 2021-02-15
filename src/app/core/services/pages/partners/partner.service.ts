@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../../../../environments/environment';
-import {PartnerModel} from '../../models/Partners/partner.model';
-import {PartnerSettingModel} from '../../models/Partners/partner-setting.model';
+import {environment} from '../../../../../environments/environment';
+import {PartnerModel} from '../../../models/Partners/partner.model';
+import {PartnerSettingModel} from '../../../models/Partners/partner-setting.model';
 
 @Injectable({
   providedIn: 'root'

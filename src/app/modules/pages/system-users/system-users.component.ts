@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/c
 import {CdkPortal} from '@angular/cdk/portal';
 import {ToolbarPortalService} from '../../../core/services/portal/toolbar-portal.service';
 import {SystemUserModel} from '../../../core/models/system-user.model';
-import {SystemUsersService} from '../../../core/services/system/users/system-users.service';
+import {SystemUsersService} from '../../../core/services/pages/system/users/system-users.service';
 import {Subscription} from 'rxjs';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';

@@ -14,7 +14,7 @@ import {ToolbarPortalService} from '../../../core/services/portal/toolbar-portal
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {LoaderModule} from '../../../core/components/loader/loader.module';
 import {RouterTestingModule} from '@angular/router/testing';
-import {DashboardService} from '../../../core/services/dashboard/dashboard.service';
+import {DashboardService} from '../../../core/services/pages/dashboard/dashboard.service';
 import {HttpClientModule} from '@angular/common/http';
 import {DashboardDataModel} from './models/dashboard-data.model';
 import {of} from 'rxjs';

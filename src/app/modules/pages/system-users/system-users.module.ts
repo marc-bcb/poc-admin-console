@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SystemUsersComponent} from './system-users.component';
 import {PortalModule} from '@angular/cdk/portal';
-import {SystemUsersService} from '../../../core/services/system/users/system-users.service';
+import {SystemUsersService} from '../../../core/services/pages/system/users/system-users.service';
 import {LoaderModule} from '../../../core/components/loader/loader.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';

@@ -7,7 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {ENTITY_TABLE_DISPLAY_COLUMNS} from './dashboard.const';
 import {ToolbarPortalService} from '../../../core/services/portal/toolbar-portal.service';
 import {CdkPortal} from '@angular/cdk/portal';
-import {DashboardService} from '../../../core/services/dashboard/dashboard.service';
+import {DashboardService} from '../../../core/services/pages/dashboard/dashboard.service';
 import {Subscription} from 'rxjs';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';

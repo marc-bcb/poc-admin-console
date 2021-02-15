@@ -12,7 +12,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import {PortalModule} from '@angular/cdk/portal';
 import {LoaderModule} from '../../../core/components/loader/loader.module';
-import {DashboardService} from '../../../core/services/dashboard/dashboard.service';
+import {DashboardService} from '../../../core/services/pages/dashboard/dashboard.service';
 import {RouterModule} from '@angular/router';
 
 @NgModule({
