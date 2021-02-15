@@ -45,4 +45,8 @@ export class SidenavComponent implements OnInit {
     setTimeout(() => this.autosize = false, 1);
   }
 
+  onNewEntityClick(type: 'ind' | 'corp'): void {
+    console.log({newEntity: type});
+  }
+
 }

@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CdkPortal} from '@angular/cdk/portal';
-import {ToolbarPortalService, ToolbarPortalSubject} from '../../../core/services/portal/toolbar-portal.service';
+import {ToolbarPortalService} from '../../../core/services/portal/toolbar-portal.service';
 import {SystemUserModel} from '../../../core/models/system-user.model';
 import {SystemUsersService} from '../../../core/services/system/users/system-users.service';
 import {Subscription} from 'rxjs';
@@ -21,7 +21,7 @@ export class SystemUsersComponent implements OnInit, AfterViewInit, OnDestroy {
   dataSource: MatTableDataSource<SystemUserModel>;
   systemUsers: Array<SystemUserModel> = [];
   subscriptions: Subscription = new Subscription();
-  loading: boolean;
+  loading = true;
 
   constructor(private readonly toolbarPortalService: ToolbarPortalService,
               private readonly systemUsersService: SystemUsersService) {

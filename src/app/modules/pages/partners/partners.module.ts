@@ -6,17 +6,19 @@ import {PartnerService} from '../../../core/services/partners/partner.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
   declarations: [PartnersComponent],
-  imports: [
-    CommonModule,
-    PortalModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        PortalModule,
+        MatCardModule,
+        MatButtonModule,
+        MatIconModule,
+        RouterModule
+    ],
   providers: [
     PartnerService
   ]

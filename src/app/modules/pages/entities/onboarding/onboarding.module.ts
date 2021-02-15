@@ -8,11 +8,13 @@ import {EntityCardModule} from '../../../../core/components/entity-card/entity-c
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {PortalModule} from '@angular/cdk/portal';
 import {MatInputModule} from '@angular/material/input';
+import {NotificationModule} from '../../../../core/services/notification/notification.module';
 
 @NgModule({
   declarations: [OnboardingComponent],
   imports: [
     CommonModule,
+    NotificationModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,

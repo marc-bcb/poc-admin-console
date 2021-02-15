@@ -16,7 +16,10 @@
               <h3>{{partner.name || partner.legal_name}}</h3>
             </div>
             <div class="col d-flex justify-content-end align-items-start">
-              <button mat-flat-button color="primary">Edit partner</button>
+              <button mat-flat-button
+                      color="primary"
+                      routerLink="/partners/edit/{{ partner.id}}">Edit partner
+              </button>
             </div>
           </div>
           <div class="row fs-small">

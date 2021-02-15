@@ -6,7 +6,6 @@ $custom-typography: mat-typography-config(
 
 @include mat-core($custom-typography);
 
-// define a real custom palette (using http://mcg.mbitson.com)
 $bcb-brand: (
   50 : #ecefff,
   100 : #ced7ff,
@@ -40,45 +39,80 @@ $bcb-brand: (
   )
 );
 
-$bcb-alternative: (
-  50 : #e0e2e4,
-  100 : #b3b6bd,
-  200 : #808691,
-  300 : #4d5664,
-  400 : #263143,
-  500 : #000d22,
-  600 : #000b1e,
-  700 : #000919,
-  800 : #000714,
-  900 : #00030c,
-  A100 : #5050ff,
-  A200 : #1d1dff,
-  A400 : #0000e9,
-  A700 : #0000cf,
+$bcb-accent: (
+  50 : #efffeb,
+  100 : #d6ffce,
+  200 : #bbffae,
+  300 : #a0ff8d,
+  400 : #8bff74,
+  500 : #77ff5c,
+  600 : #6fff54,
+  700 : #64ff4a,
+  800 : #5aff41,
+  900 : #47ff30,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #dfffdb,
+  A700 : #c8ffc2,
   contrast: (
     50 : #000000,
     100 : #000000,
     200 : #000000,
-    300 : #ffffff,
-    400 : #ffffff,
-    500 : #ffffff,
-    600 : #ffffff,
-    700 : #ffffff,
-    800 : #ffffff,
-    900 : #ffffff,
-    A100 : #ffffff,
-    A200 : #ffffff,
-    A400 : #ffffff,
-    A700 : #ffffff,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
   )
 );
 
+$bcb-warn: (
+  50 : #ffebef,
+  100 : #ffced6,
+  200 : #ffaebb,
+  300 : #ff8da0,
+  400 : #ff748b,
+  500 : #ff5c77,
+  600 : #ff546f,
+  700 : #ff4a64,
+  800 : #ff415a,
+  900 : #ff3047,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffdbdf,
+  A700 : #ffc2c8,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
 // mandatory stuff for theming
 $bcb-palette-primary: mat-palette($bcb-brand);
-$bcb-palette-accent: mat-palette($bcb-alternative);
+$bcb-palette-accent: mat-palette($bcb-accent);
+$bcb-palette-warn: mat-palette($bcb-accent);
 
 // include the custom theme components into a theme object
-$bcb-theme: mat-light-theme($bcb-palette-primary, $bcb-palette-accent);
+$bcb-theme: mat-light-theme($bcb-palette-primary, $bcb-palette-accent, $bcb-warn);
 
 // include the custom theme object into the angular material theme
 @include angular-material-theme($bcb-theme);

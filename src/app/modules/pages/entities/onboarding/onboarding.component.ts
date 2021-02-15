@@ -5,6 +5,7 @@ import {ToolbarPortalService} from '../../../../core/services/portal/toolbar-por
 import {CdkPortal} from '@angular/cdk/portal';
 import {MOCK_ENTITIES} from './MockData/entities.mock';
 import {EntitySearchUtil} from '../utils/search.util';
+import {SnackBarService} from '../../../../core/services/notification/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'bcb-onboarding',
@@ -26,7 +27,8 @@ export class OnboardingComponent implements OnInit, OnDestroy {
   currentPageIndex = 0;
   currentPageLength = 0;
 
-  constructor(private readonly toolbarPortalService: ToolbarPortalService) {
+  constructor(private readonly toolbarPortalService: ToolbarPortalService,
+              private readonly snackbar: SnackBarService) {
     // TODO: Implement service call to get page data
     this.onboardingEntities = this.rawOnboardingEntities
       .slice(0, this.itemsPerPage);
@@ -61,6 +63,7 @@ export class OnboardingComponent implements OnInit, OnDestroy {
   }
 
   onButtonClick(text: string): void {
+    this.snackbar.showSnackBar(`Button clicked: ${text}`, {status: 'success'});
     console.log({buttonClick: text});
   }
 
