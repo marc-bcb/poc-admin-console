@@ -1,8 +1,49 @@
 <div class="page-wrapper">
-  <div *ngFor="let partner of partners">
-    <pre>
-      {{partner | json}}
-    </pre>
+  <div>
+    <mat-card class="m-3 mat-elevation-z0" *ngFor="let partner of partners">
+      <div class="row">
+        <div class="profile-image-wrapper">
+          <img *ngIf="partner.logo"
+               [src]="partner.logo"
+               alt="{{partner.name || partner.legal_name}} company image">
+          <mat-icon *ngIf="!partner.logo"
+                    class="profile-icon">account_box
+          </mat-icon>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col d-flex">
+              <h3>{{partner.name || partner.legal_name}}</h3>
+            </div>
+            <div class="col d-flex justify-content-end align-items-start">
+              <button mat-flat-button color="primary">Edit partner</button>
+            </div>
+          </div>
+          <div class="row fs-small">
+            <div class="col d-flex">
+              <span *ngIf="partner.contact_email" class="d-flex align-items-center me-4">
+                <mat-icon class="me-1 fs-small">email</mat-icon>
+                <span>
+                  <a class="no-style-link"
+                     href="mailto:{{partner.contact_email}}">
+                    {{partner.contact_email}}
+                  </a>
+                </span>
+              </span>
+              <span *ngIf="partner.contact_phone" class="d-flex align-items-center">
+                <mat-icon class="me-1 fs-small">phone</mat-icon>
+                <span>
+                  <a class="no-style-link"
+                     href="tel:{{partner.contact_phone}}">
+                    {{partner.contact_phone}}
+                  </a>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
   </div>
 </div>
 <ng-container *cdkPortal>

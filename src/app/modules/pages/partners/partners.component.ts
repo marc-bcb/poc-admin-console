@@ -23,7 +23,7 @@ export class PartnersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.toolbarPortalService.setPortal(this.portalContent);
     this.subscriptions.add(this.partnerService.getAllPartners()
-      .subscribe(partners => {
+      .subscribe((partners: Array<PartnerModel>) => {
         this.partners = partners;
       }));
   }

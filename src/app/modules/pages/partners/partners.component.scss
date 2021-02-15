@@ -1,0 +1,19 @@
+img {
+  width: 100%;
+  height: auto;
+}
+
+.profile-icon {
+  width: 100%;
+  height: auto;
+  font-size: 4rem;
+  text-align: center;
+  color: var(--toolbar-text-grey-light);
+}
+
+.profile-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+}

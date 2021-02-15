@@ -20,6 +20,7 @@ export class SidenavComponent implements OnInit {
   miniNav = false;
   navItemHover = false;
   autosize = false;
+  date = new Date().toISOString();
 
   private readonly _queryListener: () => void;
 
