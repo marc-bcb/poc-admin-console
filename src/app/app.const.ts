@@ -37,6 +37,7 @@ export const SIDE_NAV_MODEL: SideNavModel = {
       icon: 'business',
     }, {
       title: 'System',
+      linkId: 'system',
       icon: 'settings_suggest',
       children: [{
         title: 'System users',
@@ -48,3 +49,52 @@ export const SIDE_NAV_MODEL: SideNavModel = {
   companyLogo: 'assets/logo.png',
   expandIcon: 'double_arrow'
 };
+
+// // entities grouping
+// export const SIDE_NAV_MODEL: SideNavModel = {
+//   navItemsGroups: [{
+//     title: undefined,
+//     navItems: [{
+//       title: 'Dashboard',
+//       location: `/${APP_ROUTES.DASHBOARD}`,
+//       icon: 'show_chart',
+//     }, {
+//       title: 'Entities',
+//       linkId: 'entities',
+//       icon: 'group_work',
+//       children: [
+//         {
+//           title: 'Onboarding',
+//           location: `/${APP_ROUTES.ONBOARDING}`,
+//           icon: 'folder'
+//         }, {
+//           title: 'Corporate entities',
+//           location: `/${APP_ROUTES.CORPORATE_ENTITIES}`,
+//           icon: 'business'
+//         }, {
+//           title: 'Individual entities',
+//           location: `/${APP_ROUTES.INDIVIDUAL_ENTITIES}`,
+//           icon: 'person'
+//         }
+//       ]
+//     }]
+//   }, {
+//     title: 'Administration',
+//     navItems: [{
+//       title: 'Partners',
+//       location: `/${APP_ROUTES.PARTNERS}`,
+//       icon: 'business',
+//     }, {
+//       title: 'System',
+//       linkId: 'system',
+//       icon: 'settings_suggest',
+//       children: [{
+//         title: 'System users',
+//         location: `/${APP_ROUTES.SYSTEM_USERS}`,
+//         icon: 'group'
+//       }]
+//     }]
+//   }],
+//   companyLogo: 'assets/logo.png',
+//   expandIcon: 'double_arrow'
+// };

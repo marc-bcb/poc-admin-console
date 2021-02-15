@@ -40,7 +40,7 @@
 }
 
 .active-nav-item {
-  * {
+  mat-icon, span {
     color: var(--link-active-text-color) !important;
   }
 

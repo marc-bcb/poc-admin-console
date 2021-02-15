@@ -3,7 +3,9 @@
                [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches"
                class="sidenav mat-elevation-z0"
                [fixedInViewport]="true"
-               [class.mini-nav]="(miniNav && !mobileQuery.matches) && !navItemHover">
+               [class.mini-nav]="(miniNav && !mobileQuery.matches) && !navItemHover"
+               (mouseenter)="navItemHover = true"
+               (mouseleave)="navItemHover = false">
     <div class="company-header" [ngClass]="{'d-flex align-items-center justify-content-center': mobileQuery.matches}">
       <img src="assets/logo.png" class="company-image" alt="bcb group company logo"
            [class.hidden]="(miniNav && !mobileQuery.matches)">
@@ -14,7 +16,7 @@
         double_arrow
       </mat-icon>
     </div>
-    <mat-nav-list class="nav-list" (mouseenter)="navItemHover = true" (mouseleave)="navItemHover = false" dense>
+    <mat-nav-list class="nav-list" dense>
       <ng-container *ngFor="let group of config.navItemsGroups">
         <ng-container *ngIf="group.title">
           <div *ngIf="!miniNav || navItemHover || mobileQuery.matches" mat-subheader>Administration</div>
@@ -23,14 +25,16 @@
         <ng-container *ngFor="let navItem of group.navItems">
           <a *ngIf="navItem.children?.length < 1 || (miniNav && !navItemHover && !mobileQuery.matches)"
              mat-list-item
-             [routerLink]="navItem.location || '#'"
+             [routerLink]="navItem.location || navItem.linkId"
              routerLinkActive="active-nav-item">
             <mat-icon *ngIf="navItem.icon" mat-list-icon>{{navItem.icon}}</mat-icon>
             <div mat-line>{{navItem.title}}</div>
           </a>
-          <mat-expansion-panel *ngIf="(!miniNav || navItemHover || mobileQuery.matches) && navItem?.children?.length > 0"
-                               class="mat-elevation-z0 list-item-expansion"
-                               dense>
+          <mat-expansion-panel
+            *ngIf="(!miniNav || navItemHover || mobileQuery.matches) && navItem?.children?.length > 0"
+            class="mat-elevation-z0 list-item-expansion"
+            [class.active-nav-item]="childActive === navItem.linkId"
+            dense>
             <mat-expansion-panel-header>
               <mat-panel-description>
                 <mat-list-item>
