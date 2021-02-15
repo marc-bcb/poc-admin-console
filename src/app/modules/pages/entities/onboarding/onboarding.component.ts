@@ -74,7 +74,7 @@ export class OnboardingComponent implements OnInit, OnDestroy {
         this.snackbar.showSnackBar(`Button clicked: ${text}`, {status: 'warn', verticalPosition: 'bottom'});
         break;
       case 'four':
-        this.snackbar.showSnackBar(`Button clicked: ${text}`, {
+        this.snackbar.showSnackBar(`Button clicked: ${text}. This will last 3 seconds`, {
           dismissButtonLabel: 'Close 👋',
           horizontalPosition: 'center',
           verticalPosition: 'bottom',

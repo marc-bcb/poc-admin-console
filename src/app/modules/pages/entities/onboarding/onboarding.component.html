@@ -1,15 +1,21 @@
 <div class="page-wrapper">
   <div>
-    <bcb-entity-card *ngFor="let entity of onboardingEntities" [entity]="entity"></bcb-entity-card>
-  </div>
+    <mat-form-field class="ms-3 mt-3 pb-0" color="primary" appearance="outline">
+      <mat-label>Search</mat-label>
+      <input type="search" matInput (input)="onSearch($event.target.value)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
 
+    <div>
+      <bcb-entity-card *ngFor="let entity of onboardingEntities" [entity]="entity"></bcb-entity-card>
+    </div>
+  </div>
   <mat-paginator *ngIf="totalItems > itemsPerPage"
                  [length]="totalItems"
                  [pageSize]="itemsPerPage"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="onPageChange($event)">
   </mat-paginator>
-
 
 </div>
 
@@ -19,11 +25,6 @@
     <div class="pageName me-4">
       Onboarding entities
     </div>
-    <mat-form-field class="me-2 pb-0" color="primary" appearance="outline">
-      <mat-label>Search</mat-label>
-      <input type="search" matInput (input)="onSearch($event.target.value)">
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
     <div class="options">
       <button mat-flat-button class="me-2" (click)="onButtonClick('one')" color="primary">one</button>
       <button mat-flat-button class="me-2" (click)="onButtonClick('two')" color="primary">two</button>
