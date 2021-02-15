@@ -63,8 +63,25 @@ export class OnboardingComponent implements OnInit, OnDestroy {
   }
 
   onButtonClick(text: string): void {
-    this.snackbar.showSnackBar(`Button clicked: ${text}`, {status: 'success'});
-    console.log({buttonClick: text});
+    switch (text) {
+      case 'one':
+        this.snackbar.showSnackBar(`Button clicked: ${text}`, {status: 'success'});
+        break;
+      case 'two':
+        this.snackbar.showSnackBar(`Button clicked: ${text}`, {status: 'danger', horizontalPosition: 'start'});
+        break;
+      case 'three':
+        this.snackbar.showSnackBar(`Button clicked: ${text}`, {status: 'warn', verticalPosition: 'bottom'});
+        break;
+      case 'four':
+        this.snackbar.showSnackBar(`Button clicked: ${text}`, {
+          dismissButtonLabel: 'Close 👋',
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          msDuration: 3000
+        });
+        break;
+    }
   }
 
 }
