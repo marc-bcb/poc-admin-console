@@ -44,7 +44,7 @@ export const MOCK_ENTITIES: Array<EntityCardModel> = [
     profileId: '0000-0000-0000-0003',
     flags: [
       {value: 'Onboarding', type: 'Onboarding', status: 'in-progress'},
-      {value: 'Can trade', type: 'trade'},
+      {value: 'Can trade', type: 'trade', status: 'success'},
       {value: 'Medium risk', type: 'risk', status: 'warn'},
       {value: 'Completed: 01 Jan 2021', type: 'completion'}
     ]

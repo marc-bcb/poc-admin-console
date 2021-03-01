@@ -18,6 +18,8 @@ import {AuthService} from './core/services/auth/auth.service';
 import {JwtInterceptor} from './core/interceptors/jwt.interceptor';
 import {SystemUsersModule} from './modules/pages/system-users/system-users.module';
 import {PartnersModule} from './modules/pages/partners/partners.module';
+import {StoreModule} from './core/services/store/store.module';
+import {EntitiesQueries} from './core/services/store/entities/entities.queries';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import {PartnersModule} from './modules/pages/partners/partners.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
+    StoreModule,
 
     // Auth0
     AuthModule.forRoot({
@@ -53,11 +57,12 @@ import {PartnersModule} from './modules/pages/partners/partners.module';
     FormBuilder,
     ToolbarPortalService,
     AuthService,
+    EntitiesQueries,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })

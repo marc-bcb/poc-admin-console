@@ -1,10 +1,12 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CdkPortal} from '@angular/cdk/portal';
 import {EntityCardModel} from '../../../../core/components/entity-card/models/entity-card.model';
-import {MOCK_ENTITIES} from '../onboarding/MockData/entities.mock';
 import {ToolbarPortalService} from '../../../../core/services/portal/toolbar-portal.service';
 import {PageEvent} from '@angular/material/paginator';
 import {EntitySearchUtil} from '../utils/search.util';
+import {EntitiesQueries} from '../../../../core/services/store/entities/entities.queries';
+import {EntityCardTransformer} from '../../../../core/components/entity-card/utils/transform.util';
+import {EntityModel} from '../../../../core/models/entity/entity.model';
 
 @Component({
   selector: 'bcb-corporate-entities',
@@ -15,21 +17,28 @@ export class CorporateEntitiesComponent implements OnInit, OnDestroy {
 
   @ViewChild(CdkPortal, {static: true}) portalContent: CdkPortal;
 
-  rawCorporateEntities: Array<EntityCardModel> = MOCK_ENTITIES;
+  rawCorporateEntities: Array<EntityCardModel> = [];
   corporateEntities: Array<EntityCardModel> = [];
   corporateEntitiesSearchResults: Array<EntityCardModel>;
 
-  totalItems: number = this.rawCorporateEntities.length;
+  totalItems: number;
   itemsPerPage = 5;
   pageSizeOptions = [2, 5, 7, 10];
 
   currentPageIndex = 0;
   currentPageLength = 0;
 
-  constructor(private readonly toolbarPortalService: ToolbarPortalService) {
+  constructor(private readonly toolbarPortalService: ToolbarPortalService,
+              private readonly entitiesQueries: EntitiesQueries) {
     // TODO: Implement service call to get page data
-    this.corporateEntities = this.rawCorporateEntities
-      .slice(0, this.itemsPerPage);
+    this.entitiesQueries.getCorporate()
+      .subscribe((entities: Array<EntityModel>) => {
+        this.rawCorporateEntities = EntityCardTransformer.fromEntityModels(entities);
+        this.corporateEntities = this.rawCorporateEntities
+          .slice(0, this.itemsPerPage);
+        this.totalItems = this.rawCorporateEntities.length;
+        console.log(this.rawCorporateEntities);
+      });
   }
 
   ngOnInit(): void {
